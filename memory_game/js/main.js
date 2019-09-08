@@ -25,10 +25,21 @@ function checkMatch(){
   }
   else{alert("wrong, idiot")}
 cardsInPlay = []}
-function flipCard(cardid){
-  cardsInPlay.push(cards[cardid].rank)
-  console.log(`user flipped ${cards[cardid].rank} of ${cards[cardid].suit} ${cards[cardid].cardImage}`)
+function flipCard(){
+  let thisCardId = this.getAttribute('data-id');
+  console.log(thisCardId)
+  cardsInPlay.push(cards[thisCardId].rank)
+  console.log(`user flipped ${cards[thisCardId].rank} of ${cards[thisCardId].suit} ${cards[thisCardId].cardImage}`)
+  this.setAttribute("src",cards[thisCardId].cardImage)
 if(cardsInPlay.length === 2){checkMatch()}
 }
-flipCard(0)
-flipCard(2)
+function createBoard(){
+for (var i = 0; i < cards.length; i++) {
+
+  var newListItem = document.createElement('img');
+  newListItem.setAttribute("src","images/back.png")
+  newListItem.setAttribute("data-id",i)
+  newListItem.addEventListener("click",flipCard )
+  document.getElementById("game-board").appendChild(newListItem)
+}}
+createBoard()
